@@ -21,50 +21,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
-    //@Override
-//    public void start(Stage stage) throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("roulette.fxml"));
-//        Scene scene = new Scene(fxmlLoader.load(), 700, 480);
-//        stage.setTitle("Hello!");
-//        stage.setScene(scene);
-//        scene.getStylesheets().add(getClass().getResource("test.css").toExternalForm());
-//        stage.show();
-//    }
 
-    public void start1(Stage stage) throws FileNotFoundException {
-        //Creating an image
-        //FileInputStream input = new FileInputStream("/");
-        Image image = new Image(HelloApplication.class.getResourceAsStream("roulette-table.jpg"));
+    private MainController mainController;
 
-        //Setting the image view
-        ImageView imageView = new ImageView(image);
-
-        //Setting the position of the image
-        imageView.setX(50);
-        imageView.setY(25);
-
-        //setting the fit height and width of the image view
-        imageView.setFitHeight(455);
-        imageView.setFitWidth(500);
-
-        //Setting the preserve ratio of the image view
-        imageView.setPreserveRatio(true);
-
-        //Creating a Group object
-        Group root = new Group(imageView);
-
-        //Creating a scene object
-        Scene scene = new Scene(root, 600, 500);
-
-        //Setting title to the Stage
-        stage.setTitle("Loading an image");
-
-        //Adding scene to the stage
-        stage.setScene(scene);
-
-        //Displaying the contents of the stage
-        stage.show();
+    public MainController getMainController() {
+        return mainController;
     }
+
 
     public void addWheel(Scene scene) {
         scene.getStylesheets().add("test.css");
@@ -95,35 +58,37 @@ public class HelloApplication extends Application {
         root.getChildren().addAll(vBox);
 
         button.setOnAction(actionEvent-> {
+            getMainController().pushRouletteWheelScene();
 //            if(stage!=null){
 //                stage.requestFocus();
 //                return;
 //            }
 
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("roulette.fxml"));
-            //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-            try {
-                Scene scene = new Scene(fxmlLoader.load(), 700, 520);
-                stage.setTitle("Hello!");
-                stage.setScene(scene);
-                scene.getStylesheets().add(getClass().getResource("test.css").toExternalForm());
-                stage.show();
-//                Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+//            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("roulette.fxml"));
+//            //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+//            try {
+//                Scene scene = new Scene(fxmlLoader.load(), 700, 520);
 //                stage.setTitle("Hello!");
-//
 //                stage.setScene(scene);
-////            stage = new Stage();
-////            StackPane stackPane = new StackPane();
-////            stage.setScene(new Scene(stackPane, 200,200));
+//                scene.getStylesheets().add(getClass().getResource("test.css").toExternalForm());
 //                stage.show();
-            } catch (IOException ioe) {
-
-            }
+////                Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+////                stage.setTitle("Hello!");
+////
+////                stage.setScene(scene);
+//////            stage = new Stage();
+//////            StackPane stackPane = new StackPane();
+//////            stage.setScene(new Scene(stackPane, 200,200));
+////                stage.show();
+//            } catch (IOException ioe) {
+//
+//            }
         });
     }
 
     @Override
     public void start(Stage primaryStage) {
+        this.mainController = new MainController(primaryStage);
         stage = primaryStage;
         Scene scene = new Scene(root,700,480);
         //scene.getStylesheets().add(getClass().getResource("test.css").toExternalForm());
