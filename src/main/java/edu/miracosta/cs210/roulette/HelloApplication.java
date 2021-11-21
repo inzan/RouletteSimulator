@@ -101,7 +101,6 @@ public class HelloApplication extends Application {
 //            }
 
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("roulette.fxml"));
-
             //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
             try {
                 Scene scene = new Scene(fxmlLoader.load(), 700, 520);
