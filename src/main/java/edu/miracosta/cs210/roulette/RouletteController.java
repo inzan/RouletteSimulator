@@ -42,7 +42,8 @@ public class RouletteController {
         } else {
             spinButton.setText("Spin!");
         }
-        getMainController().pushAboutScene();
+        //getMainController().pushAboutScene();
+        showWheel(mainController.primaryStage);
 
     }
 
@@ -119,7 +120,9 @@ public class RouletteController {
     }
 
     private void press(ActionEvent e) {
+
         animate(ball);
+
     }
 
     private void animate(Ball ball) {
@@ -129,6 +132,9 @@ public class RouletteController {
         rt.setToAngle(SPIN_LENGTH + getRandomNum(0, 37));
         rt.setAxis(Rotate.Z_AXIS);
         rt.setAutoReverse(false);
+        rt.setOnFinished((actionEvent-> {
+            getMainController().pushRouletteWheelScene();
+        }));
         rt.play();
     }
 
